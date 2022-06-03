@@ -1,0 +1,32 @@
+
+/** Stocks Watchlist:
+NVDA (100), IONQ (1000), MSFT (70), HD (100)
+UNH (50), NDAQ (25), AMD (44), BLK (60)
+SQQQ (-55), XOM (0), VGT (0)
+**/
+
+-- Creating a table and inserting data to the table
+CREATE TABLE stocks (id INTEGER PRIMARY KEY, ticker_symbol TEXT, ticker_description TEXT, shares_owned INTEGER, position_type TEXT, acct_name TEXT);
+
+INSERT INTO stocks VALUES (1, 'NVDA', 'Nvidia', 100, 'Long', 'Fidelity');
+INSERT INTO stocks VALUES (2, 'IONQ', 'IonQ', 1000, 'Long', 'Fidelity');
+INSERT INTO stocks VALUES (3, 'MSFT', 'Microsoft', 70, 'Long', 'Fidelity');
+INSERT INTO stocks VALUES (4, 'HD', 'Home Depot', 100, 'Long', 'Fidelity');
+INSERT INTO stocks VALUES (5, 'UNH', 'United Health Group', 50, 'Long', 'Fidelity');
+INSERT INTO stocks VALUES (6, 'NDAQ', 'Nasdaq Inc', 25, 'Long', 'Fidelity');
+INSERT INTO stocks VALUES (7, 'AMD', 'Advanced Micro Devices', 44, 'Long', 'Fidelity');
+INSERT INTO stocks VALUES (8, 'BLK', 'Blackrock', 60, 'Long', 'Fidelity');
+INSERT INTO stocks VALUES (9, 'SQQQ', 'Short QQQ ETF', -55, 'Short', 'TD Ameritrade');
+INSERT INTO stocks VALUES (10, 'XOM', 'Exxon Mobil', NULL, 'Short', NULL);
+INSERT INTO stocks VALUES (11, 'VGT', 'Vanguard IT ETF', NULL, 'Long', NULL);
+
+-- Querying owned stocks in Fidelity only
+SELECT * 
+FROM stocks WHERE NOT shares_owned IS NULL
+	AND acct_name = 'Fidelity'
+ORDER BY shares_owned DESC;
+
+-- Aggregating Data: Total shares owned
+SELECT acct_name, SUM(shares_owned)
+FROM stocks
+GROUP BY acct_name;
