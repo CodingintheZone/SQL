@@ -39,3 +39,6 @@ FROM exercise_logs
 SELECT type 
 FROM exercise_logs 
 GROUP BY type HAVING COUNT(*) >= 2;
+
+-- Checking if heartrate at the danger zone (max)
+SELECT COUNT(*) FROM exercise_logs WHERE heart_rate > 220 - 30;
