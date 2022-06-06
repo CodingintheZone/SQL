@@ -42,3 +42,32 @@ GROUP BY type HAVING COUNT(*) >= 2;
 
 -- Checking if heartrate at the danger zone (max)
 SELECT COUNT(*) FROM exercise_logs WHERE heart_rate > 220 - 30;
+
+-- 50-90% of max HR
+SELECT COUNT(*) FROM exercise_logs WHERE
+    heart_rate >= ROUND(0.50 * (220-30)) 
+    AND  heart_rate <= ROUND(0.90 * (220-30));
+    
+-- Case
+SELECT type, heart_rate,
+    CASE 
+        WHEN heart_rate > 220-30 THEN "above max"
+        WHEN heart_rate > ROUND(0.90 * (220-30))
+THEN "above target"
+        WHEN heart_rate > ROUND(0.50 * (220-30)) 
+THEN "within target"
+        ELSE "below target"
+    END as "hr_zone"
+FROM exercise_logs;
+
+SELECT COUNT(*),
+    CASE 
+        WHEN heart_rate > 220-30 THEN "above max"
+        WHEN heart_rate > ROUND(0.90 * (220-30)) 
+THEN "above target"
+        WHEN heart_rate > ROUND(0.50 * (220-30)) 
+THEN "within target"
+        ELSE "below target"
+    END as "hr_zone"
+FROM exercise_logs
+GROUP BY hr_zone;
