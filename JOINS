@@ -1,3 +1,6 @@
+#Here I am creating a table of people and a table of peoples' hobbies for a project to JOIN these two tables.
+
+#Table1
 CREATE TABLE persons (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
@@ -11,6 +14,7 @@ INSERT INTO persons (name, age) VALUES ("Fluffy Sparkles", 8);
 
 INSERT INTO persons (name, age) VALUES ("Frank Red", 28);
 
+#Table2
 CREATE table hobbies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     person_id INTEGER,
@@ -29,11 +33,13 @@ INSERT INTO hobbies (person_id, name) VALUES (4, "meowing");
 
 INSERT INTO hobbies (person_id, name) VALUES (4, "Coding with Mosh");
 
+#Joining Tables
 SELECT p.name, h.name
 FROM persons p
 JOIN hobbies h 
 ON p.id = h.person_id;
 
+#Additional single query
 SELECT p.name, h.name
 FROM persons p
 JOIN hobbies h 
