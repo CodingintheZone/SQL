@@ -1,0 +1,45 @@
+#In this SQL (Postgre) code, I'm querying a database that's holding Nexflix data to answer questions about the data. 
+
+#1. Join the two tables from the Netflix database showing the director, title, year released, movie information.
+
+SELECT np.director, nti.title, nti.release_year, nti.description as "title_information"
+FROM "CharlotteChaze/BreakIntoTech"."netflix_people" np
+LEFT JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info" nti
+ON np.show_id=nti.show_id;
+
+#2. How many movie titles are there in the database? (movies only, not tv shows) 
+SELECT count(*) 
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type='Movie';
+
+#3. When was the most recent batch of tv shows and/or movies added to the database? 
+SELECT max(date(date_added))
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
+
+#4. List all the movies and tv shows in alphabetical order. 
+SELECT title
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+ORDER BY title asc;
+
+#5. Who was the Director for the movie Bright Star? 
+SELECT Tdirector
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
+LEFT JOIN  "CharlotteChaze/BreakIntoTech"."netflix_people" people
+ON titles.show_id=people.show_id
+WHERE titles.title='Bright Star'
+
+#6. What is the oldest movie in the database and what year was it made? 
+SELECT title, release_year
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type='Movie'
+GROUP BY title, release_year
+ORDER BY release_year asc
+LIMIT 2;
+# Or "subquery"
+SELECT title, release_year 
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type = 'Movie'
+AND release_year <= 
+(SELECT MIN(release_year) 
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type = 'Movie'); 
