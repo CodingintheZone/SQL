@@ -1,3 +1,4 @@
+#Here I am creating a music table to query 3 objectives below.
 CREATE TABLE songs 
 	(id INTEGER PRIMARY KEY AUTOINCREMENT,
     artist TEXT,
