@@ -1,4 +1,4 @@
--- Creating fitness activity table
+-- Creating fitness activity table to query different request.
 CREATE TABLE exercise_logs
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
     type TEXT,
