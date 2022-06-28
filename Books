@@ -1,3 +1,5 @@
+#Here I am creating a table with information about books to query two request below.
+
 CREATE TABLE books (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     author TEXT,
