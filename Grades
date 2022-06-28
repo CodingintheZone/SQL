@@ -1,3 +1,4 @@
+#Here I am creating a table of students' grades
 
 CREATE TABLE student_grades (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -18,10 +19,10 @@ INSERT INTO student_grades (name, number_grade, fraction_completed)
 INSERT INTO student_grades (name, number_grade, fraction_completed)
     VALUES ("Winstonia", 82, 0.9045);
 
--- Find % completed
+-- Finding % completed
 SELECT name, number_grade, ROUND (fraction_completed*100) AS percent_completed FROM student_grades;
 
--- Find letter grade
+-- Finding letter grade
 SELECT COUNT (*),
 
   CASE 
