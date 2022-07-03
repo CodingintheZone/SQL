@@ -1,4 +1,4 @@
-#In this SQL (Postgre) code, I'm querying a database that's holding Nexflix data to answer questions about the data. 
+#In this SQL (Postgre) code, I'm querying a database that's holding Netflix data to answer questions about the data. 
 
 #1. Join the two tables from the Netflix database showing the director, title, year released, movie information.
 
